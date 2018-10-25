@@ -19,7 +19,7 @@ public class Main {
 
 	// arff ファイル読み込み用
 	static File arff_file;
-	static String arff_file_name = "./traffic_log/2018_10_25_1248.arff";
+	static String arff_file_name = "./traffic_log/slide_30_window_60.txt";
 	// オリジナルのcsvデータを格納するリスト
 	static ArrayList<String[]> arff_file_list = new ArrayList<String[]>();
 	// ダブルクォーテーションを無くしたcsvファイル
@@ -30,8 +30,8 @@ public class Main {
 	// メインメソッド
 	public static void main(String args[]) throws FileNotFoundException {
 		callFile();
-		csv_data = toStringArray();
-		System.out.println(csv_data[10][1]);
+//		csv_data = toStringArray();
+//		System.out.println(csv_data[10][1]);
 		System.out.println(arff_data[10][1]);
 	}
 
@@ -58,26 +58,26 @@ public class Main {
 		}
 	}
 
-	// ファイルのダブルクォーテーションを消すメソッド
-	public static String[][] toStringArray() {
-		// data[][]のなかにダブルクォーテーションを消した値を入れる
-		String[][] data = new String[file_list.size()][];
-		// fileDbleQuoはArrayListから二次元配列にするための仮の配列
-		String[][] fileDbleQuo = new String[file_list.size()][];
-		// dataの配列に値を入れるための仮置場
-		String dbleQuo;
-		for (int i = 0; i < file_list.size(); i++) {
-			fileDbleQuo[i] = file_list.get(i);
-			// ArrayListから二次元配列
-			data[i] = file_list.get(i);
-			for (int k = 0; k < 5; k++) {
-				dbleQuo = fileDbleQuo[i][k];
-				data[i][k] = dbleQuo.replace("\"", "");// ダブルクォーテーションを消す
-			}
-			csv_data_list = extractCsvData(data[i]);
-		}
-		return data;
-	}
+//	// ファイルのダブルクォーテーションを消すメソッド
+//	public static String[][] toStringArray() {
+//		// data[][]のなかにダブルクォーテーションを消した値を入れる
+//		String[][] data = new String[file_list.size()][];
+//		// fileDbleQuoはArrayListから二次元配列にするための仮の配列
+//		String[][] fileDbleQuo = new String[file_list.size()][];
+//		// dataの配列に値を入れるための仮置場
+//		String dbleQuo;
+//		for (int i = 0; i < file_list.size(); i++) {
+//			fileDbleQuo[i] = file_list.get(i);
+//			// ArrayListから二次元配列
+//			data[i] = file_list.get(i);
+//			for (int k = 0; k < 5; k++) {
+//				dbleQuo = fileDbleQuo[i][k];
+//				data[i][k] = dbleQuo.replace("\"", "");// ダブルクォーテーションを消す
+//			}
+//			csv_data_list = extractCsvData(data[i]);
+//		}
+//		return data;
+//	}
 
 	public static ArrayList<String[]> extractCsvData(String[] data) {
 		ArrayList<String[]> csv_data_list = new ArrayList<String[]>();
