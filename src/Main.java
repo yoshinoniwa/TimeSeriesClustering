@@ -17,10 +17,15 @@ public class Main {
 	//ダブルクォーテーションを無くしたcsvファイルのリスト
 	static ArrayList<String[]> csv_data_list = new ArrayList<String[]>();
 	
+	//arff ファイル読み込み用
+	static File arff_file;
+	static String arff_file_name = "./traffic_log/";
+	
+	//メインメソッド
 	public static void main(String args[]) throws FileNotFoundException{
 		callFile();
 		csv_data=toStringArray();
-
+		System.out.println(csv_data[10][1]);
 		
 	}
 	
