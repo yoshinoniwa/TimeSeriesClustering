@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class Main {
 	// --------------ファイル読み込み用--------------
-	static File arff_file = new File("./traffic_log/slide_30_window_180.txt");
+	static File arff_file = new File("./traffic_log/slide_30_window_120.txt");
 	static ArrayList<String[]> arff_file_list = new ArrayList<String[]>();
 	static String[][] arff_data;
 	// クラスタ0のデータの平均と分散
