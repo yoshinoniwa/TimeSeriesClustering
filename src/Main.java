@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 public class Main {
 	// --------------ファイル読み込み用--------------
-	static final String file_day = "16-09-24";
+	static final String file_day = "16-09-30";
 	static final String file_name = "./traffic_log/"+file_day+".csv";
 	static File arff_file = new File(file_name);
 	static ArrayList<String[]> arff_file_list = new ArrayList<String[]>();
@@ -50,8 +50,8 @@ public class Main {
 			Variance(traffic_sum_num.get(i), traffic_ave_list.get(i));
 //			System.out.println(i + " : " +traffic_sum_num.get(i));
 		}
-//		System.out.println(traffic_ave_list.size());
-//		inputFile();
+		System.out.println(traffic_ave_list.size());
+		inputFile();
 	}
 
 	// ファイル読み込み
@@ -80,7 +80,7 @@ public class Main {
 
 	public static void setTrafficDataSet(String[][] data) {
 		// 文字比較
-		String ip_address = data[1][2];
+		String ip_address = data[2][2];
 		String comparsion_str = ip_address + " is at";
 
 		//
@@ -96,7 +96,7 @@ public class Main {
 
 			if (count == 1) {
 				t_sum_num[t_count] = Long.parseLong(arff_data[i][5]);
-				System.out.println(i+" : "+t_sum_num[t_count]);
+//				System.out.println(i+" : "+t_sum_num[t_count]);
 				t_count++;
 			} else if (count == 2) {
 				traffic_sum_set.add(t_sum_num);
