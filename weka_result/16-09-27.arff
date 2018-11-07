@@ -1,11 +1,3 @@
-@relation traffic_pattern-weka.filters.unsupervised.attribute.Remove-R3_clustered
-
-@attribute Instance_number numeric
-@attribute dataave numeric
-@attribute datavar numeric
-@attribute Cluster {cluster0,cluster1}
-
-@data
 0,139,3581.5,cluster0
 1,118,3302,cluster0
 2,93,1152.16,cluster0
