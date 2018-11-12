@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,11 +14,12 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+//import ClusterCalculator;
 
 public class Main {
 	// --------------ファイル読み込み用--------------
 	// オリジナルファイル(wireshark)
-	static final String file_day = "16-09-30";
+	static final String file_day = "16-09-27-tcp";
 	static final String file_name = "./traffic_log/" + file_day + ".csv";
 	static File origin_file = new File(file_name);
 	static ArrayList<String[]> origin_file_list = new ArrayList<String[]>();
@@ -51,6 +53,7 @@ public class Main {
 	static ArrayList<Double> cluster3_data_var = new ArrayList<Double>();
 	static long cluster3_data_ave_result;
 	static double cluster3_data_var_result;
+	
 
 	// // クラスタ1のデータの平均と分散
 	// static ArrayList<Long> cluster1_data_ave = new ArrayList<Long>();
@@ -72,7 +75,7 @@ public class Main {
 	static double var;
 
 	// メインメソッド
-	public static void main(String args[]) {
+	public static void main(String args[]) throws ParseException, IOException {
 		callFile();
 		setTrafficDataSet(origin_data);
 		DivideCluster(weka_data, weka_file_list);
@@ -85,30 +88,36 @@ public class Main {
 			Variance(traffic_sum_num.get(i), traffic_ave_list.get(i));
 			traffic_var_list.add(var);
 		}
-		Average(cluster0_data_ave);
-		cluster0_data_ave_result = ave;
-		Variance(cluster0_data_ave, cluster0_data_ave_result);
-		cluster0_data_var_result = var;
-		
-		Average(cluster1_data_ave);
-		cluster1_data_ave_result = ave;
-		Variance(cluster1_data_ave, cluster1_data_ave_result);
-		cluster1_data_var_result = var;
-		
-		Average(cluster2_data_ave);
-		cluster2_data_ave_result = ave;
-		Variance(cluster2_data_ave, cluster2_data_ave_result);
-		cluster2_data_var_result = var;
-		
-		Average(cluster3_data_ave);
-		cluster3_data_ave_result = ave;
-		Variance(cluster3_data_ave, cluster3_data_ave_result);
-		cluster3_data_var_result = var;
-		
-		System.out.println(cluster0_data_ave_result+","+cluster0_data_var_result);
-		System.out.println(cluster1_data_ave_result+","+cluster1_data_var_result);
-		System.out.println(cluster2_data_ave_result+","+cluster2_data_var_result);
-		System.out.println(cluster3_data_ave_result+","+cluster3_data_var_result);
+		ClusterCalculator.CallFile();
+		AnalysisByIPAddress.setIPAddressList(origin_data);
+		ArrayList<String> hoge = new ArrayList<String>();
+		hoge = AnalysisByIPAddress.getIPAddressList();
+		DataCalculator.calclator(hoge);
+//		System.out.println("  "+hoge.get(2));
+		//		Average(cluster0_data_ave);
+//		cluster0_data_ave_result = ave;
+//		Variance(cluster0_data_ave, cluster0_data_ave_result);
+//		cluster0_data_var_result = var;
+//		
+//		Average(cluster1_data_ave);
+//		cluster1_data_ave_result = ave;
+//		Variance(cluster1_data_ave, cluster1_data_ave_result);
+//		cluster1_data_var_result = var;
+//		
+//		Average(cluster2_data_ave);
+//		cluster2_data_ave_result = ave;
+//		Variance(cluster2_data_ave, cluster2_data_ave_result);
+//		cluster2_data_var_result = var;
+//		
+//		Average(cluster3_data_ave);
+//		cluster3_data_ave_result = ave;
+//		Variance(cluster3_data_ave, cluster3_data_ave_result);
+//		cluster3_data_var_result = var;
+//		
+//		System.out.println(cluster0_data_ave_result+","+cluster0_data_var_result);
+//		System.out.println(cluster1_data_ave_result+","+cluster1_data_var_result);
+//		System.out.println(cluster2_data_ave_result+","+cluster2_data_var_result);
+//		System.out.println(cluster3_data_ave_result+","+cluster3_data_var_result);
 		// System.out.println(weka_data[0][3]);
 		// createFile();
 	}
@@ -180,8 +189,7 @@ public class Main {
 				sum_list = new ArrayList<Long>(Arrays.asList(t_sum_num));
 				sum_list.removeAll(Collections.singleton(null));
 				traffic_sum_num.add(sum_list);
-				 System.out.println(i + " : " + origin_data[i][1]+ " : " +
-				 sum_list);
+//				 System.out.println(i + " : " + origin_data[i][1]+ " : " +sum_list);
 				count = 1;
 				t_count = 0;
 				t_sum_num = new Long[origin_file_list.size()];
@@ -222,7 +230,7 @@ public class Main {
 	}
 
 	// 平均を求めるメソッド
-	public static void WekaAverage(ArrayList<Long> list) {
+	public static void wekaAverage(ArrayList<Long> list) {
 
 		long sum = 0;
 		if (list == null || list.size() == 0) {
