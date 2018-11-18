@@ -72,7 +72,7 @@ public class AnalysisByIPAddress {
 					System.out.println("ファイルに書き込めません");
 				}	
 			}
-//			writeFileByIpAddress(ip_address, data);
+			writeFileByIpAddress(ip_address, data);
 		} catch (IOException e) {
 			System.out.println(e);
 		}

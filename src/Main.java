@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class Main {
 	// --------------ファイル読み込み用--------------
 	// オリジナルファイル(wireshark)
-	static final String file_day = "16-09-27-tcp";
+	static final String file_day = "16-09-27";
 	static final String file_name = "./traffic_log/" + file_day + ".csv";
 	static File origin_file = new File(file_name);
 	static ArrayList<String[]> origin_file_list = new ArrayList<String[]>();
@@ -70,7 +70,8 @@ public class Main {
 	static Long[][] sum_num;
 	static ArrayList<Long> sum_list;
 	static ArrayList<ArrayList> traffic_sum_num = new ArrayList<ArrayList>();
-
+	
+	
 	static long ave;
 	static double var;
 
@@ -90,9 +91,10 @@ public class Main {
 		}
 		ClusterCalculator.CallFile();
 		AnalysisByIPAddress.setIPAddressList(origin_data);
-		ArrayList<String> hoge = new ArrayList<String>();
-		hoge = AnalysisByIPAddress.getIPAddressList();
-		DataCalculator.calclator(hoge);
+		ArrayList<String> ip_list = new ArrayList<String>();
+		ip_list = AnalysisByIPAddress.getIPAddressList();
+		DataCalculator.calclator(ip_list);
+//		DataCalculator.calclatorAll(origin_data);
 //		System.out.println("  "+hoge.get(2));
 		//		Average(cluster0_data_ave);
 //		cluster0_data_ave_result = ave;
