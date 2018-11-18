@@ -1,0 +1,9 @@
+@relation traffic_pattern
+
+@attribute timeave real
+@attribute timevar real
+@attribute dataave real
+@attribute datavar real
+@attribute class {label}
+
+@data

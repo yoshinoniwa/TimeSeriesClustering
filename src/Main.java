@@ -19,13 +19,13 @@ import java.util.regex.Pattern;
 public class Main {
 	// --------------ファイル読み込み用--------------
 	// オリジナルファイル(wireshark)
-	static final String file_day = "16-09-27";
+	static final String file_day = "18-11-18";
 	static final String file_name = "./traffic_log/" + file_day + ".csv";
 	static File origin_file = new File(file_name);
 	static ArrayList<String[]> origin_file_list = new ArrayList<String[]>();
 	static String[][] origin_data;
 	// wekaの結果ファイル
-	static final String weka_file_day = "16-09-25";
+	static final String weka_file_day = "18-11-18";
 	static final String weka_file_name = "./weka_result/" + weka_file_day + ".arff";
 	static File weka_file = new File(weka_file_name);
 	static ArrayList<String[]> weka_file_list = new ArrayList<String[]>();
@@ -78,8 +78,8 @@ public class Main {
 	// メインメソッド
 	public static void main(String args[]) throws ParseException, IOException {
 		callFile();
-		setTrafficDataSet(origin_data);
-		DivideCluster(weka_data, weka_file_list);
+//		setTrafficDataSet(origin_data);
+//		DivideCluster(weka_data, weka_file_list);
 		for (int i = 0; i < traffic_sum_num.size(); i++) {
 			Average(traffic_sum_num.get(i));
 			traffic_ave_list.add(ave);
@@ -93,7 +93,7 @@ public class Main {
 		AnalysisByIPAddress.setIPAddressList(origin_data);
 		ArrayList<String> ip_list = new ArrayList<String>();
 		ip_list = AnalysisByIPAddress.getIPAddressList();
-		DataCalculator.calclator(ip_list);
+//		DataCalculator.calclator(ip_list);
 //		DataCalculator.calclatorAll(origin_data);
 //		System.out.println("  "+hoge.get(2));
 		//		Average(cluster0_data_ave);
@@ -136,17 +136,17 @@ public class Main {
 				line = br.readLine();
 			}
 			br.close();
-			// weka結果ファイル
-			BufferedReader br_weka = new BufferedReader(new FileReader(weka_file));
-			String line_weka = br_weka.readLine();
-			for (int row = 0; line_weka != null; row++) {
-				weka_file_list.add(line_weka.split(",", 0));
-				line_weka = br_weka.readLine();
-			}
-			br_weka.close();
+//			// weka結果ファイル
+//			BufferedReader br_weka = new BufferedReader(new FileReader(weka_file));
+//			String line_weka = br_weka.readLine();
+//			for (int row = 0; line_weka != null; row++) {
+//				weka_file_list.add(line_weka.split(",", 0));
+//				line_weka = br_weka.readLine();
+//			}
+//			br_weka.close();
 
 			origin_data = new String[origin_file_list.size()][];
-			weka_data = new String[weka_file_list.size()][];
+//			weka_data = new String[weka_file_list.size()][];
 			// arrayListから二次元配列へ
 			for (int row = 0; row < origin_file_list.size(); row++) {
 				origin_data[row] = origin_file_list.get(row);
@@ -154,12 +154,12 @@ public class Main {
 					origin_data[row][col] = origin_data[row][col].replace("\"", "");
 				}
 			}
-			for (int row = 0; row < weka_file_list.size(); row++) {
-				weka_data[row] = weka_file_list.get(row);
-				// for (int col = 0; col < 3; col++) {
-				// weka_data[row][col] = weka_data[row][col].replace("\"", "");
-				// }
-			}
+//			for (int row = 0; row < weka_file_list.size(); row++) {
+//				weka_data[row] = weka_file_list.get(row);
+//				// for (int col = 0; col < 3; col++) {
+//				// weka_data[row][col] = weka_data[row][col].replace("\"", "");
+//				// }
+//			}
 		} catch (IOException e) {
 			System.out.println(e);
 		}

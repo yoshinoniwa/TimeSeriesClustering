@@ -32,7 +32,7 @@ public class AnalysisByIPAddress {
 		for (int i = 0; i < ip_address.size(); i++) {
 //			System.out.println(ip_address.get(i));
 		}
-//		createFileByIpAddress(ip_address, data);
+		createFileByIpAddress(ip_address, data);
 
 	}
 
@@ -47,7 +47,7 @@ public class AnalysisByIPAddress {
 				// if (i == 0) {
 				ip = list.get(i);
 				ip = ip.replace(".", "");
-				file_name = "./ipaddress_data/2016-09-27/" + ip + ".txt";
+				file_name = "./ipaddress_data/2018-11-18/" + ip + ".txt";
 				new_file[i] = new File(file_name);
 				// ファイル作成
 				new_file[i].createNewFile();
